@@ -42,6 +42,13 @@ func main() {
 		}
 		utils.AddShortcut(shortcutName, command)
 		return
+	case "remove":
+		if len(os.Args) < 3 {
+			fmt.Println("Usage: ya remove <shortcut>")
+			os.Exit(1)
+		}
+		utils.RemoveShortcut(os.Args[2])
+		return
 	}
 
 	command, exists := shortcuts[shortcut]

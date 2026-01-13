@@ -82,6 +82,32 @@ func AddShortcut(name, command string) error {
 	return nil
 }
 
+func RemoveShortcut(name string) error {
+	shortcuts, err := LoadShortcuts()
+	if err != nil {
+		return err
+	}
+	delete(shortcuts, name)
+
+	data, err := json.MarshalIndent(shortcuts, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	appDir, err := getAppDataDir()
+	if err != nil {
+		return err
+	}
+
+	shortCutpath := filepath.Join(appDir, "shortcuts.json")
+	err = os.WriteFile(shortCutpath, data, 0644)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func IsInvalidString(s string) bool {
 	if len(s) == 0 {
 		return true
