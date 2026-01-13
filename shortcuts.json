@@ -1,6 +1,0 @@
-{
-  "deploy": "docker compose up -d",
-  "logs": "docker compose logs -f",
-  "npmi": "npm install",
-  "stop": "docker compose down"
-}
