@@ -12,7 +12,7 @@ func getAppDataDir() (string, error) {
 		return "", err
 	}
 
-	appDir := filepath.Join(dir, "proton/data")
+	appDir := filepath.Join(dir, "ya/data")
 	err = os.MkdirAll(appDir, 0755)
 
 	return appDir, err

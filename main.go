@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/exec"
 
-	"pronto/utils"
+	"ya/utils"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 	}
 
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: pronto <shortcut> \n for shortcuts use: pronto help")
+		fmt.Println("Usage: ya <shortcut> \n for shortcuts use: ya help")
 		os.Exit(1)
 	}
 
@@ -31,13 +31,13 @@ func main() {
 		return
 	case "add":
 		if len(os.Args) < 4 {
-			fmt.Println("Usage: pronto add <shortcut> <command>")
+			fmt.Println("Usage: ya add <shortcut> '<command>'")
 			os.Exit(1)
 		}
 		shortcutName := os.Args[2]
 		command := os.Args[3]
 		if utils.IsInvalidString(shortcutName) || utils.IsInvalidString(command) {
-			fmt.Println("Usage: pronto add <shortcut> '<command>'")
+			fmt.Println("Usage: ya add <shortcut> '<command>'")
 			os.Exit(1)
 		}
 		utils.AddShortcut(shortcutName, command)
@@ -47,7 +47,7 @@ func main() {
 	command, exists := shortcuts[shortcut]
 
 	if !exists {
-		fmt.Printf("Unknown shortcut: %s\n", shortcut+"\n to add a new shortcut use: pronto add <shortcut> '<command>'")
+		fmt.Printf("Unknown shortcut: %s\n", shortcut+"\n to add a new shortcut use: ya add <shortcut> '<command>'")
 		os.Exit(1)
 	}
 
