@@ -26,19 +26,36 @@ func main() {
 	shortcut := os.Args[1]
 
 	switch shortcut {
+
+	// Version command
 	case "version", "-v":
 		version := utils.GetAppVersion()
 		color.Green("Ya version: %s", version)
 		return
-	case "help":
+
+	// list command
+	case "list", "-l", "--list":
 		color.Green("Available shortcuts:")
-		for key := range shortcuts {
+		for key, cmd := range shortcuts {
 			color.Yellow(" - %s :", key)
-			color.Green("   %s", shortcuts[key])
+			color.Green(" %s", cmd)
 		}
 		color.Green("\nTo add a new shortcut use: ya add <shortcut> '<command>'")
 		color.Green("To remove a shortcut use: ya remove <shortcut>")
 		return
+
+	// Help command
+	case "help", "--help", "-h":
+		color.Green("Available shortcuts:")
+		for key, cmd := range shortcuts {
+			color.Yellow(" - %s :", key)
+			color.Green(" %s", cmd)
+		}
+		color.Green("\nTo add a new shortcut use: ya add <shortcut> '<command>'")
+		color.Green("To remove a shortcut use: ya remove <shortcut>")
+		return
+
+	// Add command
 	case "add":
 		if len(os.Args) < 4 {
 			color.Red("Usage: ya add <shortcut> '<command>'")
@@ -52,6 +69,7 @@ func main() {
 		}
 		utils.AddShortcut(shortcutName, command)
 		return
+	// Remove command
 	case "remove":
 		if len(os.Args) < 3 {
 			color.Red("Usage: ya remove <shortcut>")
@@ -64,7 +82,7 @@ func main() {
 	command, exists := shortcuts[shortcut]
 
 	// i added this because i was wondering how i would have been using this
-	// if i cannot pass more arguments to the shortcut
+	// if i cannot pass more arguments to the shortcut e.g git commit -m (extra args)
 	// so hear it is
 	if len(os.Args) > 2 {
 		args := os.Args[2:]
