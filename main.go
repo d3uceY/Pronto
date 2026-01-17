@@ -23,10 +23,10 @@ func main() {
 		os.Exit(1)
 	}
 
+
 	shortcut := os.Args[1]
 
 	switch shortcut {
-
 	// Version command
 	case "version", "-v":
 		if len(os.Args) > 2 {
@@ -111,6 +111,20 @@ func main() {
 		}
 		utils.AddShortcut(shortcutName, command)
 		return
+
+    // import shortcuts
+	case "import":
+		if len(os.Args) < 3 {
+			color.Red("Usage: ya import '<file-path>'")
+			os.Exit(1)
+		}
+
+		err := utils.ImportShortcuts(os.Args[2])
+		if err != nil {
+			color.Red(err.Error())
+			os.Exit(1)
+		}
+		color.Green("Shortcut Imported `%s`", os.Args[2])
 
 	// Remove command
 	case "remove":

@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/fatih/color"
 )
 
 // i go need explain myself? 😭
@@ -157,4 +159,65 @@ func IsInvalidString(s string) bool {
 		return true
 	}
 	return false
+}
+
+func ImportShortcuts(path string) error {
+  
+	data, err := os.ReadFile(path)
+
+	if err != nil {
+		color.Red(err.Error())
+		return err
+	}
+
+	appDir, err := getAppDataDir()
+	if err != nil {
+		color.Red(err.Error())
+		return err
+	}
+
+	shortCutpath := filepath.Join(appDir, "shortcuts.json")
+
+	currentShortcutData, err := os.ReadFile(shortCutpath)
+
+	// If file does not exist, create it with the imported json, umm, hopefully it's valid lmao
+	if err != nil {
+		if os.IsNotExist(err) {
+			err := os.WriteFile(shortCutpath, data, 0644)
+			if err != nil {
+				color.Red(err.Error())
+				return err
+			}
+		}
+	}
+
+	// for some reason, i forgot maps only store unique keys 😂
+	var currentShortcuts map[string]string
+	err = json.Unmarshal(currentShortcutData, &currentShortcuts)
+
+	if err != nil {
+		return err
+	}
+
+	// store imported shortcuts in map
+	var importedShortcuts map[string]string
+	err = json.Unmarshal(data, &importedShortcuts)
+
+	if err != nil {
+		return err
+	}
+
+	// merge imported shortcuts into current shortcuts
+	for key, value := range importedShortcuts {
+		currentShortcuts[key] = value
+	}
+
+	// write merged shortcuts back to file
+	data, err = json.MarshalIndent(currentShortcuts, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	// this permission param lowkey threw me off ngl
+	return os.WriteFile(shortCutpath, data, 0644)
 }
