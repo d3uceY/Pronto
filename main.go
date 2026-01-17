@@ -151,7 +151,6 @@ func main() {
 	// if i cannot pass more arguments to the shortcut e.g git commit -m (extra args)
 	// so hear it is
 	if len(os.Args) > 2 {
-		fmt.Println(os.Args)
 		for index, value := range os.Args {
 			if !(index <= 1) {
 				if value != "-m" {
