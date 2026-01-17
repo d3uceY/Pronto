@@ -50,10 +50,9 @@ func main() {
 		}
 		color.Green("Available shortcuts:")
 		for key, cmd := range shortcuts {
-			fmt.Printf("%s %s\n", yellow(" - %s :", key), green(" %s", cmd))
+			fmt.Printf("- %s : %s\n", yellow(key), green(cmd))
 		}
 		return
-
 	// Help command
 	case "help", "--help", "-h":
 		if len(os.Args) > 2 {
