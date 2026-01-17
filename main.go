@@ -148,8 +148,7 @@ func main() {
 	command, exists := shortcuts[shortcut]
 
 	// i added this because i was wondering how i would have been using this
-	// if i cannot pass more arguments to the shortcut e.g git commit -m (extra args)
-	// so hear it is
+	// yhis allows arguments passing the shortcut commands to also pass messages like git commit -m 'message'
 	if len(os.Args) > 2 {
 		for index, value := range os.Args {
 			if !(index <= 1) {
