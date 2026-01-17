@@ -25,7 +25,7 @@ func main() {
 	shortcut := os.Args[1]
 
 	switch shortcut {
-	case "version":
+	case "version", "-v":
 		version := utils.GetAppVersion()
 		color.Green("Ya version: %s", version)
 		return
