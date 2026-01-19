@@ -57,6 +57,11 @@ homebrew_casks:
     commit_author:
       name: d3uceY
       email: onyekwelujesse1234@gmail.com
+    repository:
+      owner: d3uceY
+      name: homebrew-ya
+      branch: main
+
 release:
   footer: >-
 
