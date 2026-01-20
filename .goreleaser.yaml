@@ -66,5 +66,5 @@ release:
   footer: >-
 
     ---
-
+    - 🖥️ **GUI Available:** Prefer a graphical interface? Check out [Ya-GUI](https://github.com/d3uceY/Ya-GUI) - a modern desktop application for managing your shortcuts visually
     Released by [d3uceY](https://github.com/d3uceY).
