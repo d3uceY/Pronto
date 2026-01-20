@@ -58,7 +58,7 @@ If you have **Homebrew** installed, you can install **Ya** with:
 ```bash
 brew tap d3uceY/homebrew-ya
 brew install ya
-
+```
 
 ### Prerequisites
 
