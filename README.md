@@ -16,7 +16,7 @@ A lightweight command-line shortcut manager for Windows. Execute your frequently
 ![Ya CLI Banner](https://img.shields.io/badge/Made%20with-Go-00ADD8?style=for-the-badge&logo=go)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
 
-### Ya CLI v0.3.0 — Multi-Platform Support
+### Ya CLI — Multi-Platform Support
 
 #### 🪟 Windows
 
